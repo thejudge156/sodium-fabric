@@ -30,6 +30,8 @@ dependencies {
 
     implementation 'org.joml:joml:1.10.4'
     include 'org.joml:joml:1.10.4'
+    include(implementation("org.lwjgl:lwjgl-egl:3.2.3"))
+    include(implementation("org.lwjgl:lwjgl-opengles:3.2.3"))
 
     // Fabric API
     modIncludeImplementation(fabricApi.module("fabric-api-base", project.fabric_version))

@@ -6,7 +6,7 @@ import org.lwjgl.PointerBuffer;
 import java.nio.IntBuffer;
 
 public interface DrawCommandList extends AutoCloseable {
-    void multiDrawElementsBaseVertex(PointerBuffer pointer, IntBuffer count, IntBuffer baseVertex, GlIndexType indexType);
+    void drawElementsBaseVertex(long pointer, int count, int baseVertex, GlIndexType indexType);
 
     void endTessellating();
 

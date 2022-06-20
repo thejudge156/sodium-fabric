@@ -1,11 +1,11 @@
 package me.jellysquid.mods.sodium.client.gl.tessellation;
 
-import org.lwjgl.opengl.GL32C;
+import org.lwjgl.opengles.GLES32;
 
 public enum GlIndexType {
-    UNSIGNED_BYTE(GL32C.GL_UNSIGNED_BYTE, 1),
-    UNSIGNED_SHORT(GL32C.GL_UNSIGNED_SHORT, 2),
-    UNSIGNED_INT(GL32C.GL_UNSIGNED_INT, 4);
+    UNSIGNED_BYTE(GLES32.GL_UNSIGNED_BYTE, 1),
+    UNSIGNED_SHORT(GLES32.GL_UNSIGNED_SHORT, 2),
+    UNSIGNED_INT(GLES32.GL_UNSIGNED_INT, 4);
 
     private final int id;
     private final int stride;

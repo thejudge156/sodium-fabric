@@ -5,7 +5,7 @@ import me.jellysquid.mods.sodium.client.gl.buffer.GlMutableBuffer;
 import me.jellysquid.mods.sodium.client.gl.shader.uniform.*;
 import me.jellysquid.mods.sodium.client.model.vertex.type.ChunkVertexType;
 import org.joml.Matrix4f;
-import org.lwjgl.opengl.GL32C;
+import org.lwjgl.opengles.GLES32;
 
 /**
  * A forward-rendering shader program for chunks.
@@ -37,10 +37,10 @@ public class ChunkShaderInterface {
     }
 
     public void setup(ChunkVertexType vertexType) {
-        RenderSystem.activeTexture(GL32C.GL_TEXTURE0);
+        RenderSystem.activeTexture(GLES32.GL_TEXTURE0);
         RenderSystem.bindTexture(RenderSystem.getShaderTexture(0));
 
-        RenderSystem.activeTexture(GL32C.GL_TEXTURE2);
+        RenderSystem.activeTexture(GLES32.GL_TEXTURE2);
         RenderSystem.bindTexture(RenderSystem.getShaderTexture(2));
 
         this.uniformBlockTex.setInt(0);

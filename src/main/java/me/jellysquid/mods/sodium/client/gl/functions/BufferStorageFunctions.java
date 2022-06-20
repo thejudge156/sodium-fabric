@@ -4,9 +4,8 @@ import me.jellysquid.mods.sodium.client.gl.buffer.GlBufferStorageFlags;
 import me.jellysquid.mods.sodium.client.gl.buffer.GlBufferTarget;
 import me.jellysquid.mods.sodium.client.gl.device.RenderDevice;
 import me.jellysquid.mods.sodium.client.gl.util.EnumBitField;
-import org.lwjgl.opengl.ARBBufferStorage;
-import org.lwjgl.opengl.GL44C;
-import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.opengles.EXTBufferStorage;
+import org.lwjgl.opengles.GLESCapabilities;
 
 public enum BufferStorageFunctions {
     NONE {
@@ -18,23 +17,21 @@ public enum BufferStorageFunctions {
     CORE {
         @Override
         public void createBufferStorage(GlBufferTarget target, long length, EnumBitField<GlBufferStorageFlags> flags) {
-            GL44C.glBufferStorage(target.getTargetParameter(), length, flags.getBitField());
+            EXTBufferStorage.glBufferStorageEXT(target.getTargetParameter(), length, flags.getBitField());
         }
     },
     ARB {
         @Override
         public void createBufferStorage(GlBufferTarget target, long length, EnumBitField<GlBufferStorageFlags> flags) {
-            ARBBufferStorage.glBufferStorage(target.getTargetParameter(), length, flags.getBitField());
+            EXTBufferStorage.glBufferStorageEXT(target.getTargetParameter(), length, flags.getBitField());
         }
     };
 
     public static BufferStorageFunctions pickBest(RenderDevice device) {
-        GLCapabilities capabilities = device.getCapabilities();
+        GLESCapabilities capabilities = device.getCapabilities();
 
-        if (capabilities.OpenGL44) {
+        if (capabilities.GLES32) {
             return CORE;
-        } else if (capabilities.GL_ARB_buffer_storage) {
-            return ARB;
         } else {
             return NONE;
         }

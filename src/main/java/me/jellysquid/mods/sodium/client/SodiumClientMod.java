@@ -12,6 +12,7 @@ import java.io.IOException;
 public class SodiumClientMod implements ClientModInitializer {
     private static SodiumGameOptions CONFIG;
     private static Logger LOGGER;
+    public static boolean hasInitedGLES = false;
 
     private static String MOD_VERSION;
 

@@ -5,7 +5,7 @@ import me.jellysquid.mods.sodium.client.gl.GlObject;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.GL20C;
+import org.lwjgl.opengles.GLES32;
 
 /**
  * A compiled OpenGL shader object.
@@ -18,19 +18,19 @@ public class GlShader extends GlObject {
     public GlShader(ShaderType type, Identifier name, String src) {
         this.name = name;
 
-        int handle = GL20C.glCreateShader(type.id);
+        int handle = GLES32.glCreateShader(type.id);
         ShaderWorkarounds.safeShaderSource(handle, src);
-        GL20C.glCompileShader(handle);
+        GLES32.glCompileShader(handle);
 
-        String log = GL20C.glGetShaderInfoLog(handle);
+        String log = GLES32.glGetShaderInfoLog(handle);
 
         if (!log.isEmpty()) {
             LOGGER.warn("Shader compilation log for " + this.name + ": " + log);
         }
 
-        int result = GlStateManager.glGetShaderi(handle, GL20C.GL_COMPILE_STATUS);
+        int result = GLES32.glGetShaderi(handle, GLES32.GL_COMPILE_STATUS);
 
-        if (result != GL20C.GL_TRUE) {
+        if (result != GLES32.GL_TRUE) {
             throw new RuntimeException("Shader compilation failed, see log for details");
         }
 
@@ -42,7 +42,7 @@ public class GlShader extends GlObject {
     }
 
     public void delete() {
-        GL20C.glDeleteShader(this.handle());
+        GLES32.glDeleteShader(this.handle());
 
         this.invalidateHandle();
     }

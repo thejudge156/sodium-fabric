@@ -10,7 +10,7 @@ import java.nio.IntBuffer;
 
 /**
  * Provides a fixed-size queue for building a draw-command list usable with
- * {@link org.lwjgl.opengl.GL33C#glMultiDrawElementsBaseVertex(int, IntBuffer, int, PointerBuffer, IntBuffer)}.
+ * {@link org.lwjgl.opengles.EXTDrawElementsBaseVertex#glMultiDrawElementsBaseVertexEXT(int, IntBuffer, int, PointerBuffer, IntBuffer)}.
  */
 public interface MultiDrawBatch {
     static MultiDrawBatch create(int capacity) {

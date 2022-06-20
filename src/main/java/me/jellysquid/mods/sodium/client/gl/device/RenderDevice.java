@@ -1,7 +1,7 @@
 package me.jellysquid.mods.sodium.client.gl.device;
 
 import me.jellysquid.mods.sodium.client.gl.functions.DeviceFunctions;
-import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.opengles.GLESCapabilities;
 
 public interface RenderDevice {
     RenderDevice INSTANCE = new GLRenderDevice();
@@ -19,7 +19,7 @@ public interface RenderDevice {
     void makeActive();
     void makeInactive();
 
-    GLCapabilities getCapabilities();
+    GLESCapabilities getCapabilities();
 
     DeviceFunctions getDeviceFunctions();
 }

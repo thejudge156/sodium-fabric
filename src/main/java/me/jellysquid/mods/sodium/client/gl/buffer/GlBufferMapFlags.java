@@ -1,17 +1,17 @@
 package me.jellysquid.mods.sodium.client.gl.buffer;
 
 import me.jellysquid.mods.sodium.client.gl.util.EnumBit;
-import org.lwjgl.opengl.GL30C;
-import org.lwjgl.opengl.GL44C;
+import org.lwjgl.opengles.EXTBufferStorage;
+import org.lwjgl.opengles.GLES32;
 
 public enum GlBufferMapFlags implements EnumBit {
-    READ(GL30C.GL_MAP_READ_BIT),
-    WRITE(GL30C.GL_MAP_WRITE_BIT),
-    PERSISTENT(GL44C.GL_MAP_PERSISTENT_BIT),
-    INVALIDATE_BUFFER(GL30C.GL_MAP_INVALIDATE_BUFFER_BIT),
-    INVALIDATE_RANGE(GL30C.GL_MAP_INVALIDATE_RANGE_BIT),
-    EXPLICIT_FLUSH(GL30C.GL_MAP_FLUSH_EXPLICIT_BIT),
-    COHERENT(GL44C.GL_MAP_COHERENT_BIT);
+    READ(GLES32.GL_MAP_READ_BIT),
+    WRITE(GLES32.GL_MAP_WRITE_BIT),
+    PERSISTENT(EXTBufferStorage.GL_MAP_PERSISTENT_BIT_EXT),
+    INVALIDATE_BUFFER(GLES32.GL_MAP_INVALIDATE_BUFFER_BIT),
+    INVALIDATE_RANGE(GLES32.GL_MAP_INVALIDATE_RANGE_BIT),
+    EXPLICIT_FLUSH(GLES32.GL_MAP_FLUSH_EXPLICIT_BIT),
+    COHERENT(EXTBufferStorage.GL_MAP_COHERENT_BIT_EXT);
 
     private final int bit;
 
